@@ -114,6 +114,13 @@ name = "pytorch-cu132"
 url = "https://download.pytorch.org/whl/cu132"
 explicit = true
 
+[tool.pytest.ini_options]
+# Use the local src/ tree as the source of truth so tests never depend on an
+# installed copy of musubi-tuner.  The ComfyUI submodule is added separately
+# so that ``import comfy`` works in tests that need it.
+pythonpath = ["src", "submodules/ComfyUI"]
+testpaths = ["tests"]
+
 [tool.ruff]
 line-length = 132
 indent-width = 4
